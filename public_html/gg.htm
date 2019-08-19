@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Treatment Comparison</title>
+    <h1>Treatment Comparison</h1>
+    <style type="text/css">
+        head 
+        {
+            background-color: pink;
+        }
+        h1
+        {
+            background-color: lightblue;
+        }
+        body
+        {
+            font-family: sans-serif;
+            font-size: 10pt;
+            margin: 70px;
+        }
+        table
+        {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            margin : auto;
+            width: 70%;
+        }
+        table th
+        {
+            background-color: #F7F7F7;
+            color: #333;
+            font-weight: bold;
+        }
+        table th, table td
+        {
+            padding: 5px;
+            border-color: #ccc;
+            text-align: center;
+            text-orientation: left;
+        }
+    </style>
+    <script type="text/javascript">
+        function GenerateTable() {
+            //Build an array containing Customer records
+
+            
+            var ggwp = new Array();
+            //header table
+            ggwp.push(["Concerns", "Lumpectomy", "Mastectomy", "Alternative Treatment", "No Treatment"]);
+            //concer no1
+            if (document.getElementById("chk1").checked) {
+                ggwp.push(["How long will I live?", "In 5 years, out of 100 women with breast cancer, 80 may live and 20 may die (with radiotherapy)", "In 5 years, out of 100 women with breast cancer, 80 may live and 20 may die (with radiotherapy)", "No good information is available.", "Most women will die within 5 years"]);
+            }
+            //concern no2
+            if (document.getElementById("chk2").checked) {
+                ggwp.push(["Will the cancer come back?", "In 8 years, out of 100 women, 10 may have a relapse and 90 may not (with radiotherapy);39 may have a relapse and 61 may not (without radiotherapy)", "In 8 years, out of 100 women, 8 may have a relapse on the chest wall and 92 may not", "No good information is available. Ask the practitioner", "Most women will die within 5 years"]);
+            }
+            //concern no3
+            if (document.getElementById("chk3").checked) {
+                ggwp.push(["Will I need another operation?", "MAY BE <p>If there are cancer cells remaining. This happens in 20 out of 100 women</p>", "NO <p>Unless you choose breast reconstruction", "NO", "NO"]);
+            }
+            //concern no4
+            if (document.getElementById("chk4").checked) {
+                ggwp.push(["Will I get Lymphoedema?", "Out of 100 women,5 may get lymphoedema and 95 may not (with sentinel lymph node biopsy*); 17 may get lymphoedema and 83 may not (with axillary lymph node dissection*)", "Out of 100 women,5 may get lymphoedema and 95 may not (with sentinel lymph node biopsy*); 17 may get lymphoedema and 83 may not (with axillary lymph node dissection*)", "Not applicable <p>The cancer may progress and cause lymphoedema</p>", "NO <p>However, when the cancer grows, the breast will become deformed"]);
+            }
+            //concern no5
+            if (document.getElementById("chk5").checked) {
+                ggwp.push(["Will I lose my breast?", "NO <p>However, if the tumour margins are involved or if there is a recurrence in the future, a mastectomy will be recommended</p>", "YES <p>However, you may consider breast reconstruction", ">NO <p>However, if the treatment does not work, the breast will become deformed", "NO <p>However, when the cancer grows, the breast will become deformed"]);
+            }
+            //concern no6
+            if (document.getElementById("chk6").checked) {
+                ggwp.push(["Is chemotherapy recommended?", "YES <p>(depending on oncologist recommendation)</p>", "YES <p>(depending on oncologist recommendation)</p>", "NO", "NO"]);
+            }
+            //concern no7
+            if (document.getElementById("chk7").checked) {
+                ggwp.push(["Is radiotherapy recommended?", "YES", "NO <p>(Unless the axillary lymph nodes are involved or the tumour is very large or involving the margins)</p>", "NO", "NO"]);
+            }
+            //concern no8
+            if (document.getElementById("chk8").checked) {
+                ggwp.push(["How much does it cost?", "(To be completed by your doctor/nurse)", "(To be completed by your doctor/nurse)", "(To be completed by your doctor/nurse)", "No Cost <p>However, you may need treatment as the cancer grows and this will incur cost.</p>"]);
+
+            }
+            ///////////////////////////////////////////////////////////////////////////////////////////
+            //loop choosing concerns
+            
+
+            //Create a HTML Table element.
+            var table = document.createElement("TABLE");
+            table.border = "1";
+
+            //Get the count of columns.
+            var columnCount = ggwp[0].length;
+
+            //Add the header row.
+            var row = table.insertRow(-1);
+            for (var i = 0; i < columnCount; i++) {
+                var headerCell = document.createElement("TH");
+                headerCell.innerHTML = ggwp[0][i];
+                row.appendChild(headerCell);
+            }
+
+            //Add the data rows.
+            for (var i = 1; i < ggwp.length; i++) {
+                row = table.insertRow(-1);
+                for (var j = 0; j < columnCount; j++) {
+                    var cell = row.insertCell(-1);
+                    cell.innerHTML = ggwp[i][j];
+                }
+            }
+
+            var dvTable = document.getElementById("dvTable");
+            dvTable.innerHTML = "";
+            dvTable.appendChild(table);
+        }
+    </script>
+</head>
+<body>
+    <form name="compare"">
+    <div>
+        Choose your concerns:<br />
+        <input type="checkbox" value="1" id="chk1">How long will ! survive? (Cancer is considered cured if it does not come back in 5 years)
+        <br /> 
+        <input type="checkbox" value="2" id="chk2">Will the cancer come back?
+        <br /> 
+        <input type="checkbox" value="3" id="chk3">Will I need another operation?
+        <br /> 
+        <input type="checkbox" value="4" id="chk4">Will I get Lymphoedema?
+        <br /> 
+        <input type="checkbox" value="5" id="chk5">Will I lose my breast?
+        <br /> 
+        <input type="checkbox" value="6" id="chk6">Is chemotherapy recommended?
+        <br /> 
+        <input type="checkbox" value="7" id="chk7">Is radiotherapy recommended?
+        <br /> 
+        <input type="checkbox" value="8" id="chk8">How much does it cost?
+        <br />
+    </div>
+    <input type="button" value="Compare" onclick="GenerateTable()" />
+    <hr />
+    <div id="dvTable">
+    </div>
+    </form>
+</body>
+</html>
